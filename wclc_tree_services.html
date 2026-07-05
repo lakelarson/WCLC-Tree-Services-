@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCLC-Tree Services | Vance, AL</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #12261b;
+  --navy-mid: #163b26;
+  --navy-light: #1e4d31;
+  --blue: #2e7d32;
+  --blue-bright: #388e3c;
+  --sky: #e7f3e8;
+  --orange: #e65100;
+  --orange-light: #fff3e0;
+  --gray-light: #f5f6f4;
+  --gray-mid: #5a6459;
+  --border: #dde3da;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+body { font-family: var(--font); background: #fff; color: var(--navy); }
+
+svg.icon { display: inline-block; vertical-align: middle; flex-shrink: 0; }
+
+/* NAV */
+.wclc-nav {
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 68px; position: sticky; top: 0; z-index: 100;
+}
+.wclc-logo { display: flex; align-items: center; gap: 14px; }
+.wclc-logo-badge {
+  width: 44px; height: 44px; border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--blue);
+}
+.wclc-logo-badge img { width: 100%; height: 100%; object-fit: cover; }
+.wclc-logo-text { color: #fff; font-size: 17px; font-weight: 600; }
+.wclc-logo-text span { color: #64b5f6; }
+.wclc-logo-sub { color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.wclc-nav-dropdown-wrapper { position: relative; display: inline-block; }
+.wclc-nav-cta-trigger {
+  background: var(--orange); color: #fff; border: none;
+  padding: 10px 20px; border-radius: 6px; font-size: 14px;
+  font-weight: 500; cursor: pointer;
+  display: flex; align-items: center; gap: 6px; font-family: var(--font);
+}
+.wclc-nav-cta-trigger:hover { background: #bf360c; }
+.wclc-dropdown-menu {
+  display: none; position: absolute; right: 0; top: calc(100% + 8px);
+  background: #fff; min-width: 210px; border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border);
+  overflow: hidden; z-index: 110;
+}
+.wclc-dropdown-menu.show { display: block; }
+.wclc-dropdown-menu a, .wclc-dropdown-menu button {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 12px 16px; color: var(--navy); text-decoration: none;
+  font-size: 14px; font-weight: 500; background: transparent; border: none;
+  text-align: left; cursor: pointer; border-bottom: 1px solid var(--gray-light);
+  font-family: var(--font);
+}
+.wclc-dropdown-menu a:last-child, .wclc-dropdown-menu button:last-child { border-bottom: none; }
+.wclc-dropdown-menu a:hover, .wclc-dropdown-menu button:hover { background: var(--gray-light); }
+.wclc-dropdown-menu .wclc-dropdown-phone { background: var(--orange-light); color: var(--orange); }
+.wclc-dropdown-menu .wclc-dropdown-phone:hover { background: #ffe0b2; }
+
+/* HERO */
+.wclc-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0d2847 100%);
+  padding: 76px 2rem 68px; text-align: center; position: relative; overflow: hidden;
+}
+.wclc-hero-bg-icon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  opacity: 0.04; pointer-events: none; color: var(--blue-bright);
+}
+.wclc-hero-eyebrow {
+  display: inline-block;
+  background: rgba(21,101,192,0.25); color: #90caf9;
+  font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+}
+.wclc-hero h1 {
+  color: #fff; font-size: 48px; font-weight: 700;
+  line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 8px;
+}
+.wclc-hero h1 em { color: #64b5f6; font-style: normal; }
+.wclc-hero-sub-head {
+  color: #fff; font-size: 26px; font-weight: 300; margin-bottom: 20px;
+  letter-spacing: -0.5px; opacity: 0.85;
+}
+.wclc-hero p {
+  color: rgba(255,255,255,0.65); font-size: 17px; line-height: 1.7;
+  max-width: 500px; margin: 0 auto 36px;
+}
+.wclc-hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.wclc-btn-primary {
+  background: var(--orange); color: #fff; border: none;
+  padding: 14px 28px; border-radius: 8px; font-size: 15px;
+  font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+  text-decoration: none; font-family: var(--font);
+}
+.wclc-btn-primary:hover { background: #bf360c; }
+.wclc-btn-secondary {
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  padding: 14px 28px; border-radius: 8px; font-size: 15px;
+  font-weight: 500; cursor: pointer; font-family: var(--font);
+}
+.wclc-btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+.wclc-hero-stats {
+  display: flex; justify-content: center;
+  margin-top: 56px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 40px;
+  position: relative; z-index: 1;
+}
+.wclc-stat { padding: 0 44px; border-right: 1px solid rgba(255,255,255,0.08); }
+.wclc-stat:last-child { border-right: none; }
+.wclc-stat-num { color: #fff; font-size: 32px; font-weight: 700; }
+.wclc-stat-num span { color: #64b5f6; }
+.wclc-stat-label { color: rgba(255,255,255,0.45); font-size: 13px; margin-top: 4px; }
+.wclc-hero-wave {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--blue) 0%, #64b5f6 50%, var(--blue) 100%);
+}
+
+/* BADGE BAR */
+.wclc-badges {
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  gap: 40px; padding: 14px 2rem; flex-wrap: wrap;
+}
+.wclc-badge { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 13px; font-weight: 500; }
+
+/* SECTIONS */
+.wclc-section { padding: 72px 2rem; }
+.wclc-section-label {
+  color: var(--blue); font-size: 12px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
+}
+.wclc-section h2 {
+  font-size: 34px; font-weight: 700; color: var(--navy);
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.wclc-section-sub { color: var(--gray-mid); font-size: 16px; margin-bottom: 48px; max-width: 480px; }
+
+/* SERVICES */
+.wclc-services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+}
+.wclc-service-card {
+  border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px;
+  cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.wclc-service-card:hover {
+  border-color: var(--blue); box-shadow: 0 4px 20px rgba(21,101,192,0.1);
+  transform: translateY(-2px);
+}
+.wclc-service-icon {
+  width: 46px; height: 46px; background: var(--sky);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; color: var(--blue);
+}
+.wclc-service-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.wclc-service-card p { font-size: 13px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 14px; }
+.wclc-service-link { color: var(--blue); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+/* CREDENTIALS */
+.wclc-creds { background: var(--gray-light); padding: 72px 2rem; }
+.wclc-creds-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 900px; margin: 0 auto; }
+.wclc-creds-list { list-style: none; display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+.wclc-creds-item { display: flex; align-items: flex-start; gap: 14px; }
+.wclc-creds-dot {
+  width: 28px; height: 28px; min-width: 28px; background: var(--blue); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #fff; margin-top: 1px;
+}
+.wclc-creds-item h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.wclc-creds-item p { font-size: 13px; color: var(--gray-mid); line-height: 1.6; }
+.wclc-badge-visual { background: var(--navy); border-radius: 16px; padding: 36px; text-align: center; }
+.wclc-badge-circle {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: var(--blue); margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  border: 4px solid rgba(255,255,255,0.12); color: #fff;
+}
+.wclc-badge-label { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.wclc-badge-sub { color: rgba(255,255,255,0.45); font-size: 13px; }
+.wclc-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+.wclc-cred-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.wclc-cred-key { color: rgba(255,255,255,0.45); font-size: 13px; }
+.wclc-cred-val { color: #fff; font-size: 13px; font-weight: 600; }
+
+/* REVIEWS */
+.wclc-reviews { padding: 72px 2rem; }
+.wclc-reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.wclc-review-card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.wclc-review-stars { color: #f59e0b; font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+.wclc-review-text { font-size: 14px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.wclc-review-author { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+/* CONTACT */
+.wclc-contact { background: var(--navy-mid); padding: 72px 2rem; }
+.wclc-contact .wclc-section-label { color: #90caf9; }
+.wclc-contact h2 { color: #fff; font-size: 34px; font-weight: 700; margin-bottom: 12px; }
+.wclc-contact-desc { color: rgba(255,255,255,0.55); font-size: 16px; margin-bottom: 40px; }
+.wclc-contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 860px; margin: 0 auto; }
+.wclc-contact-info { display: flex; flex-direction: column; gap: 16px; }
+.wclc-contact-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px; padding: 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.wclc-contact-icon { color: #64b5f6; margin-top: 2px; flex-shrink: 0; }
+.wclc-contact-card h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.wclc-contact-card p { color: rgba(255,255,255,0.45); font-size: 13px; }
+.wclc-contact-card a { color: #fff; text-decoration: none; font-weight: 600; }
+
+/* FORM */
+.wclc-form { display: flex; flex-direction: column; gap: 14px; }
+.wclc-form input, .wclc-form textarea, .wclc-form select {
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 14px;
+  font-family: var(--font); width: 100%; outline: none;
+}
+.wclc-form input::placeholder, .wclc-form textarea::placeholder { color: rgba(255,255,255,0.28); }
+.wclc-form input:focus, .wclc-form textarea:focus, .wclc-form select:focus { border-color: #64b5f6; }
+.wclc-form select { color: rgba(255,255,255,0.45); }
+.wclc-form select option { background: var(--navy-mid); color: #fff; }
+.wclc-form textarea { resize: vertical; min-height: 100px; }
+.wclc-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.wclc-submit {
+  background: var(--orange); color: #fff; border: none;
+  padding: 14px; border-radius: 8px; font-size: 15px;
+  font-weight: 600; cursor: pointer; width: 100%; font-family: var(--font);
+}
+.wclc-submit:hover { background: #bf360c; }
+.wclc-form-success {
+  display: none; background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 8px; padding: 16px; color: #4ade80;
+  font-size: 14px; text-align: center;
+}
+
+/* FOOTER */
+.wclc-footer {
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 2rem; flex-wrap: wrap; gap: 12px;
+}
+.wclc-footer-text { color: rgba(255,255,255,0.28); font-size: 13px; }
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .wclc-hero h1 { font-size: 32px; }
+  .wclc-hero-sub-head { font-size: 20px; }
+  .wclc-hero-stats { flex-direction: column; gap: 24px; }
+  .wclc-stat { border-right: none; padding: 0; }
+  .wclc-creds-inner, .wclc-contact-inner { grid-template-columns: 1fr; }
+  .wclc-form-row { grid-template-columns: 1fr; }
+  .wclc-badges { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── INLINE SVG ICON SPRITES ── -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="ico-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="ico-wind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></symbol>
+  <symbol id="ico-cert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
+  <symbol id="ico-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="ico-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 8 9h2l-3.5 5H9l-4 5.5h14L15 14h2.5L14 9h2z"/><line x1="12" y1="19.5" x2="12" y2="22"/></symbol>
+  <symbol id="ico-saw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 15 5"/><path d="M13 3l2 2-2 2-2-2z"/><path d="M17 7l2 2-2 2-2-2z"/><path d="M21 11l1 1-3 3-1-1z"/><path d="M3 17l2 4 4-2-2-4z"/></symbol>
+  <symbol id="ico-stump" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="8" rx="8" ry="4"/><circle cx="12" cy="8" r="4.5"/><circle cx="12" cy="8" r="1.3"/><path d="M6 8v8c0 1.5 2.7 3 6 3s6-1.5 6-3V8"/></symbol>
+  <symbol id="ico-clear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><path d="M3 21h18"/><path d="M3 21v-4l5-4 4 3 5-6 4 3v8"/></symbol>
+  <symbol id="ico-hazard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 20h20L12 2z"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="ico-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="ico-mappin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="ico-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="ico-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+  <symbol id="ico-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="ico-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="ico-circle-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+</svg>
+
+<nav class="wclc-nav">
+  <div class="wclc-logo">
+    <div class="wclc-logo-badge">
+      <svg class="icon" width="26" height="26" style="color:#fff"><use href="#ico-tree"/></svg>
+    </div>
+    <div>
+      <div class="wclc-logo-text"><span>WCLC</span>-Tree Services</div>
+      <div class="wclc-logo-sub">Vance, AL · Licensed & Insured</div>
+    </div>
+  </div>
+  <div class="wclc-nav-dropdown-wrapper">
+    <button class="wclc-nav-cta-trigger" onclick="toggleDropdown(event)">
+      Menu & Contact
+      <svg class="icon" width="16" height="16"><use href="#ico-chevron"/></svg>
+    </button>
+    <div class="wclc-dropdown-menu" id="wclcNavDropdown">
+      <a href="tel:2055074947" class="wclc-dropdown-phone">
+        <svg class="icon" width="16" height="16"><use href="#ico-phone"/></svg> Call Now
+      </a>
+      <button onclick="scrollToSection('services')">
+        <svg class="icon" width="16" height="16"><use href="#ico-tree"/></svg> Services
+      </button>
+      <button onclick="scrollToSection('credentials')">
+        <svg class="icon" width="16" height="16"><use href="#ico-cert"/></svg> About
+      </button>
+      <button onclick="scrollToSection('contact')">
+        <svg class="icon" width="16" height="16"><use href="#ico-mail"/></svg> Contact
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="wclc-hero">
+  <div class="wclc-hero-bg-icon">
+    <svg width="400" height="400"><use href="#ico-tree"/></svg>
+  </div>
+  <div class="wclc-hero-eyebrow">Vance & Tuscaloosa County, AL · Available 24/7</div>
+  <h1>Trees down?<br><em>We show up.</em></h1>
+  <div class="wclc-hero-sub-head">Tree removal & land clearing, done right.</div>
+  <p>WCLC-Tree Services delivers fast, reliable tree removal, trimming, and storm cleanup you can count on — with a 100% customer recommendation rate.</p>
+  <div class="wclc-hero-btns">
+    <a href="tel:2055074947" class="wclc-btn-primary">
+      <svg class="icon" width="18" height="18"><use href="#ico-phone"/></svg> Call for Service
+    </a>
+    <button class="wclc-btn-secondary" onclick="scrollToSection('services')">See what we do</button>
+  </div>
+  <div class="wclc-hero-stats">
+    <div class="wclc-stat">
+      <div class="wclc-stat-num">100<span>%</span></div>
+      <div class="wclc-stat-label">Recommended by customers</div>
+    </div>
+    <div class="wclc-stat">
+      <div class="wclc-stat-num">5.0<span>★</span></div>
+      <div class="wclc-stat-label">Average customer rating</div>
+    </div>
+    <div class="wclc-stat">
+      <div class="wclc-stat-num">24<span>/7</span></div>
+      <div class="wclc-stat-label">Available when you need us</div>
+    </div>
+  </div>
+  <div class="wclc-hero-wave"></div>
+</section>
+
+<div class="wclc-badges">
+  <div class="wclc-badge"><svg class="icon" width="16" height="16"><use href="#ico-saw"/></svg> Tree Removal</div>
+  <div class="wclc-badge"><svg class="icon" width="16" height="16"><use href="#ico-wind"/></svg> Storm Cleanup</div>
+  <div class="wclc-badge"><svg class="icon" width="16" height="16"><use href="#ico-home"/></svg> Residential & Commercial</div>
+  <div class="wclc-badge"><svg class="icon" width="16" height="16"><use href="#ico-clock"/></svg> Emergency Service</div>
+</div>
+
+<section class="wclc-section" id="services">
+  <div class="wclc-section-label">What we do</div>
+  <h2>Full-service tree care</h2>
+  <p class="wclc-section-sub">From routine trimming to emergency storm cleanup — fast, friendly, and done right.</p>
+  <div class="wclc-services-grid">
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-saw"/></svg></div>
+      <h3>Tree removal</h3>
+      <p>Safe, complete removal of trees of any size — including tight spots close to your home or power lines.</p>
+      <div class="wclc-service-link">Get help <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-tree"/></svg></div>
+      <h3>Trimming & pruning</h3>
+      <p>Keep your trees healthy and your property looking sharp with expert trimming and deadwood removal.</p>
+      <div class="wclc-service-link">Get a quote <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-wind"/></svg></div>
+      <h3>Storm damage & emergency cleanup</h3>
+      <p>Trees or limbs down after a storm? We respond fast to clear debris and make your property safe again.</p>
+      <div class="wclc-service-link">Get help <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-stump"/></svg></div>
+      <h3>Stump grinding</h3>
+      <p>Leftover stumps ground down flush with the ground so you can reclaim your yard.</p>
+      <div class="wclc-service-link">Get a quote <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-clear"/></svg></div>
+      <h3>Land & lot clearing</h3>
+      <p>Clearing brush, underbrush, and trees to prep a lot for building, farming, or a fresh-looking yard.</p>
+      <div class="wclc-service-link">Learn more <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+    <div class="wclc-service-card" onclick="scrollToSection('contact')">
+      <div class="wclc-service-icon"><svg class="icon" width="22" height="22"><use href="#ico-hazard"/></svg></div>
+      <h3>Hazard tree assessment</h3>
+      <p>Not sure if a tree's a risk? We'll inspect it and give you a straight answer on what needs to be done.</p>
+      <div class="wclc-service-link">Schedule now <svg class="icon" width="14" height="14"><use href="#ico-arrow"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<div class="wclc-creds" id="credentials">
+  <div class="wclc-creds-inner">
+    <div>
+      <div class="wclc-section-label">Why WCLC</div>
+      <h2 style="font-size:30px; font-weight:700; color:var(--navy); letter-spacing:-0.5px;">Fast response. Safe work. Clean finish.</h2>
+      <ul class="wclc-creds-list">
+        <li class="wclc-creds-item">
+          <div class="wclc-creds-dot"><svg class="icon" width="14" height="14"><use href="#ico-check"/></svg></div>
+          <div>
+            <h4>100% customer recommendation</h4>
+            <p>Every customer who's reviewed us has recommended our work — a track record we work to protect on every job.</p>
+          </div>
+        </li>
+        <li class="wclc-creds-item">
+          <div class="wclc-creds-dot"><svg class="icon" width="14" height="14"><use href="#ico-check"/></svg></div>
+          <div>
+            <h4>Available around the clock</h4>
+            <p>Storms don't wait for business hours, and neither do we — we're on call 24/7 for emergency tree removal.</p>
+          </div>
+        </li>
+        <li class="wclc-creds-item">
+          <div class="wclc-creds-dot"><svg class="icon" width="14" height="14"><use href="#ico-check"/></svg></div>
+          <div>
+            <h4>Careful work around your property</h4>
+            <p>Tight to the house, close to power lines, or leaning the wrong way — we take it down safely and clean up every limb.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="wclc-badge-visual">
+      <div class="wclc-badge-circle">
+        <svg class="icon" width="52" height="52" style="color:#fff"><use href="#ico-tree"/></svg>
+      </div>
+      <div class="wclc-badge-label">WCLC-Tree Services</div>
+      <div class="wclc-badge-sub">Licensed & Insured · Vance, AL</div>
+      <hr class="wclc-divider">
+      <div class="wclc-cred-row"><span class="wclc-cred-key">Service area</span><span class="wclc-cred-val">Tuscaloosa County & surrounding</span></div>
+      <div class="wclc-cred-row"><span class="wclc-cred-key">Residential</span><span class="wclc-cred-val">Yes</span></div>
+      <div class="wclc-cred-row"><span class="wclc-cred-key">Commercial</span><span class="wclc-cred-val">Yes</span></div>
+      <div class="wclc-cred-row"><span class="wclc-cred-key">Emergency calls</span><span class="wclc-cred-val" style="color:#4ade80;">Available</span></div>
+      <div class="wclc-cred-row"><span class="wclc-cred-key">Hours</span><span class="wclc-cred-val" style="color:#4ade80;">Open 24/7</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="wclc-reviews" id="reviews">
+  <div class="wclc-section-label">What customers say</div>
+  <h2>Good work speaks for itself</h2>
+  <p class="wclc-section-sub">Real feedback from real Tuscaloosa County customers.</p>
+  <div class="wclc-reviews-grid">
+    <div class="wclc-review-card">
+      <div class="wclc-review-stars">★★★★★</div>
+      <p class="wclc-review-text">"My trees were only a few feet from the house and towering over the roof. Not a single limb touched the house, and the crew finished the job faster than I expected — every branch cleaned up before they left."</p>
+      <div class="wclc-review-author">— Vance homeowner</div>
+    </div>
+    <div class="wclc-review-card">
+      <div class="wclc-review-stars">★★★★★</div>
+      <p class="wclc-review-text">"Called after a storm knocked down a huge limb across our driveway. They were out the same day and had it cleared up in no time. Genuinely friendly, hard-working crew."</p>
+      <div class="wclc-review-author">— Tuscaloosa County customer</div>
+    </div>
+    <div class="wclc-review-card">
+      <div class="wclc-review-stars">★★★★★</div>
+      <p class="wclc-review-text">"Professional from the quote to the cleanup. They took down three dead trees near our fence line and left the yard looking better than before. Highly recommend."</p>
+      <div class="wclc-review-author">— Local repeat customer</div>
+    </div>
+  </div>
+</section>
+
+<section class="wclc-contact" id="contact">
+  <div style="max-width:860px; margin:0 auto;">
+    <div class="wclc-section-label">Get in touch</div>
+    <h2>Ready when you need us</h2>
+    <p class="wclc-contact-desc">Tree down? Storm damage? Need a quote? We pick up and we show up.</p>
+    <div class="wclc-contact-inner">
+      <div class="wclc-contact-info">
+        <div class="wclc-contact-card">
+          <div class="wclc-contact-icon"><svg class="icon" width="22" height="22"><use href="#ico-phone"/></svg></div>
+          <div>
+            <h4>Call or text</h4>
+            <p><a href="tel:2055074947">(205) 507-4947</a></p>
+          </div>
+        </div>
+        <div class="wclc-contact-card">
+          <div class="wclc-contact-icon"><svg class="icon" width="22" height="22"><use href="#ico-mappin"/></svg></div>
+          <div>
+            <h4>Address</h4>
+            <p>Vance, AL 35490</p>
+          </div>
+        </div>
+        <div class="wclc-contact-card">
+          <div class="wclc-contact-icon"><svg class="icon" width="22" height="22"><use href="#ico-clock"/></svg></div>
+          <div>
+            <h4>Availability</h4>
+            <p>Open 24/7 — emergency calls always welcome</p>
+          </div>
+        </div>
+        <div class="wclc-contact-card">
+          <div class="wclc-contact-icon"><svg class="icon" width="22" height="22"><use href="#ico-facebook"/></svg></div>
+          <div>
+            <h4>Facebook</h4>
+            <p><a href="https://www.facebook.com/WCLCinc/" target="_blank">WCLC-Tree Services</a></p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="wclc-form">
+          <div class="wclc-form-row">
+            <input type="text" placeholder="Your name" id="f-name" />
+            <input type="tel" placeholder="Phone number" id="f-phone" />
+          </div>
+          <select id="f-service">
+            <option value="" disabled selected>What do you need help with?</option>
+            <option>Tree removal</option>
+            <option>Trimming & pruning</option>
+            <option>Storm damage cleanup</option>
+            <option>Stump grinding</option>
+            <option>Land & lot clearing</option>
+            <option>Hazard tree assessment</option>
+            <option>Other</option>
+          </select>
+          <textarea placeholder="Tell us about the job..." id="f-msg"></textarea>
+          <button class="wclc-submit" onclick="submitForm()">Send message</button>
+          <div class="wclc-form-success" id="wclc-success">
+            <svg class="icon" width="22" height="22" style="display:block;margin:0 auto 6px"><use href="#ico-circle-check"/></svg>
+            Message sent! We'll be in touch shortly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wclc-footer">
+  <span class="wclc-footer-text">© 2025 WCLC-Tree Services · Vance, AL</span>
+  <span class="wclc-footer-text">Licensed & Insured · Available 24/7</span>
+</footer>
+
+<script>
+function toggleDropdown(event) {
+  event.stopPropagation();
+  document.getElementById('wclcNavDropdown').classList.toggle('show');
+}
+window.onclick = function(event) {
+  if (!event.target.closest('.wclc-nav-dropdown-wrapper')) {
+    const dropdown = document.getElementById('wclcNavDropdown');
+    if (dropdown && dropdown.classList.contains('show')) {
+      dropdown.classList.remove('show');
+    }
+  }
+}
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  if (!name || !phone || !service) {
+    alert('Please fill in your name, phone number, and service type.');
+    return;
+  }
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-service').value = '';
+  document.getElementById('f-msg').value = '';
+  document.getElementById('wclc-success').style.display = 'block';
+  setTimeout(() => { document.getElementById('wclc-success').style.display = 'none'; }, 5000);
+}
+</script>
+</body>
+</html>
